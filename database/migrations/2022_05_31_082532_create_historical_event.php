@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('historical_event', function (Blueprint $table) {
             $table->id();
             $table->text('img_url');
-            $table->text('name', 100);
-            $table->text('description', 150);
+            $table->string('name', 100);
+            $table->string('description', 150);
             $table->dateTime('date');
-            $table->int('popularity');
-            $table->text('country', 60);
+            $table->integer('popularity');
+            $table->string('country', 60);
             $table->text('coordinates');
             $table->timestamps();
         });
