@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('historical_event', function (Blueprint $table) {
+        Schema::create('historical_events', function (Blueprint $table) {
             $table->id();
             $table->text('img_url');
             $table->string('name', 100);
