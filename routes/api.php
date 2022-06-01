@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('historicalEvent', historicalEventController::class);
-Route::post('/historicalEvent/upload', [historicalEventController::class, 'upload']);
+Route::resource('historicalEvents', historicalEventController::class);
+Route::post('/historicalEvents/upload', [historicalEventController::class, 'upload']);
