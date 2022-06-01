@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreHistoricalEventRequest;
 use App\Http\Requests\UpdateHistoricalEventRequest;
+use App\Http\Resources\historicalEventResource;
 use App\Models\historicalEvent;
+use Illuminate\Http\Response;
 
 class historicalEventController extends Controller
 {
@@ -15,17 +17,8 @@ class historicalEventController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $historicalEvent = historicalEvent::all();
+        return new historicalEventResource($historicalEvent);
     }
 
     /**
@@ -36,7 +29,9 @@ class historicalEventController extends Controller
      */
     public function store(StoreHistoricalEventRequest $request)
     {
-        //
+        $validated = $request->validate();
+        $historicalEvent = historicalEvent::create($validated);
+        return new historicalEventResource($historicalEvent);
     }
 
     /**
@@ -45,20 +40,10 @@ class historicalEventController extends Controller
      * @param  \App\Models\historicalEvent  $historicalEvent
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\historicalEvent  $historicalEvent
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(int $id)
-    {
-        //
+        $historicalEvent = historicalEvent::find($id);
+        return new historicalEventResource($historicalEvent);
     }
 
     /**
@@ -67,9 +52,12 @@ class historicalEventController extends Controller
      * @param  \App\Http\Requests\UpdateHistoricalEventRequest  $request
      *      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateHistoricalEventRequest $request, int $id)
+    public function update(UpdateHistoricalEventRequest $request, $id)
     {
-        //
+        $validated = $request->validate();
+        $historicalEvent = historicalEvent::find($id);
+        $historicalEvent->update($validated);
+        return new historicalEventResource($historicalEvent);
     }
 
     /**
@@ -78,8 +66,10 @@ class historicalEventController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
-        //
+        $historicalEvent = historicalEvent::find($id);
+        $historicalEvent->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
