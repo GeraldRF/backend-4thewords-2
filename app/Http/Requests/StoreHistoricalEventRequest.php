@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorehistoricalEventRequest extends FormRequest
+class StoreHistoricalEventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,13 @@ class StorehistoricalEventRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'img_url' => 'required',
+            'name' => 'required|max:100',
+            'description' => 'required|max:150',
+            'date' => 'required',
+            'popularity' => 'required',
+            'country' => 'required|max:60',
+            'coordinates' => 'required',
         ];
     }
 }

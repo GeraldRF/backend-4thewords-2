@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorehistoricalEventRequest;
-use App\Http\Requests\UpdatehistoricalEventRequest;
+use App\Http\Requests\StoreHistoricalEventRequest;
+use App\Http\Requests\UpdateHistoricalEventRequest;
 use App\Models\historicalEvent;
 
 class historicalEventController extends Controller
@@ -31,10 +31,10 @@ class historicalEventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorehistoricalEventRequest  $request
+     * @param  \App\Http\Requests\StoreHistoricalEventRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorehistoricalEventRequest $request)
+    public function store(StoreHistoricalEventRequest $request)
     {
         //
     }
@@ -64,10 +64,10 @@ class historicalEventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatehistoricalEventRequest  $request
+     * @param  \App\Http\Requests\UpdateHistoricalEventRequest  $request
      *      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatehistoricalEventRequest $request, int $id)
+    public function update(UpdateHistoricalEventRequest $request, int $id)
     {
         //
     }

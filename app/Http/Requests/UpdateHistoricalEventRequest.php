@@ -24,7 +24,13 @@ class UpdatehistoricalEventRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'img_url' => 'required',
+            'name' => 'required|max:100',
+            'description' => 'required|max:150',
+            'date' => 'required',
+            'popularity' => 'required',
+            'country' => 'required|max:60',
+            'coordinates' => 'required',
         ];
     }
 }
