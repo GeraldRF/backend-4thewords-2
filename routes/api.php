@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\historicalEventController;
+use App\Http\Controllers\fileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('historicalEvents', historicalEventController::class);
-Route::post('/historicalEvents/upload', [historicalEventController::class, 'upload']);
+Route::resource('historical-events', historicalEventController::class);
+Route::post('/historical-events/upload', [fileController::class, 'upload']);
