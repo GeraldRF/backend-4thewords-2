@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\historicalEventResource;
 use App\Models\historicalEvent;
+use Exception;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class historicalEventController extends Controller
 {
@@ -28,17 +30,25 @@ class historicalEventController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'img_url' => 'required',
-            'name' => 'required|max:100',
-            'description' => 'required|max:150',
-            'date' => 'required',
-            'popularity' => 'required',
-            'country' => 'required|max:60',
-            'coordinates' => 'required',
-        ]);
-        $historicalEvent = historicalEvent::create($validated);
-        return new historicalEventResource($historicalEvent);
+        try {
+
+
+            $validated = $request->validate([
+                'img_url' => 'required',
+                'name' => 'required|max:100',
+                'description' => 'required|max:150',
+                'history' => 'required',
+                'date' => 'required',
+                'popularity' => 'required',
+                'country' => 'required|max:60',
+                'coordinates' => 'required',
+            ]);
+
+            $historicalEvent = historicalEvent::create($validated);
+            return new historicalEventResource($historicalEvent);
+        } catch (Exception $e) {
+            return response($e->getMessage(), 422);
+        }
     }
 
     /**
@@ -65,6 +75,7 @@ class historicalEventController extends Controller
             'img_url' => 'required',
             'name' => 'required|max:100',
             'description' => 'required|max:150',
+            'history' => 'required',
             'date' => 'required',
             'popularity' => 'required',
             'country' => 'required|max:60',
@@ -75,12 +86,13 @@ class historicalEventController extends Controller
         return new historicalEventResource($historicalEvent);
     }
 
-    public function giveLike($id){
-       
+    public function giveLike($id)
+    {
+
         $historicalEvent = historicalEvent::find($id);
         $historicalEvent->popularity++;
         $historicalEvent->update([$historicalEvent->popularity]);
-       
+
         return response($historicalEvent->popularity, Response::HTTP_OK);
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('img_url');
             $table->string('name', 100);
             $table->string('description', 150);
+            $table->text('history');
             $table->dateTime('date');
             $table->integer('popularity');
             $table->string('country', 60);
