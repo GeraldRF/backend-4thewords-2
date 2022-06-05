@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\historicalEventController;
+use App\Http\Controllers\fileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +18,4 @@ Route::get('/', function () {
     return 'Api for historical events';
 });
 
-Route::get('historicalEvents/get-upload/{url}', [historicalEventController::class,'getUpload']);
+Route::get('historical-events/get-upload/{url}', [fileController::class,'getUpload']);
