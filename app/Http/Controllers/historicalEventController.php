@@ -71,19 +71,23 @@ class historicalEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'img_url' => 'required',
-            'name' => 'required|max:100',
-            'description' => 'required|max:150',
-            'history' => 'required',
-            'date' => 'required',
-            'popularity' => 'required',
-            'country' => 'required|max:60',
-            'coordinates' => 'required',
-        ]);
-        $historicalEvent = historicalEvent::find($id);
-        $historicalEvent->update($validated);
-        return new historicalEventResource($historicalEvent);
+        try {
+
+            $validated = $request->validate([
+                'img_url' => 'required',
+                'name' => 'required|max:100',
+                'description' => 'required|max:150',
+                'history' => 'required',
+                'date' => 'required',
+                'country' => 'required|max:60',
+                'coordinates' => 'required',
+            ]);
+            $historicalEvent = historicalEvent::find($id);
+            $historicalEvent->update($validated);
+            return new historicalEventResource($historicalEvent);
+        } catch (Exception $e) {
+            return response([$e->getMessage()], 422);
+        }
     }
 
     public function giveLike($id)
