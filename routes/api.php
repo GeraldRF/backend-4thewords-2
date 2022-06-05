@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::resource('historical-events', historicalEventController::class);
 Route::put('historical-events/like/{id}', [historicalEventController::class, 'giveLike']);
 Route::post('historical-events/upload', [fileController::class, 'upload']);
+Route::delete('historical-events/remove-upload/{url}', [fileController::class, 'removeUpload']);

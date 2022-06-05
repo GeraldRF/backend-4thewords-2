@@ -33,4 +33,11 @@ class fileController extends Controller
 
         return response()->file($path);
     }
+
+    public function removeUpload($url)
+    {
+        $path = public_path('uploads/' . $url);
+        unlink($path);
+        return response('removed', Response::HTTP_OK);
+    }
 }
