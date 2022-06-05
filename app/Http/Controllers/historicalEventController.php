@@ -75,6 +75,15 @@ class historicalEventController extends Controller
         return new historicalEventResource($historicalEvent);
     }
 
+    public function giveLike($id){
+       
+        $historicalEvent = historicalEvent::find($id);
+        $historicalEvent->popularity++;
+        $historicalEvent->update([$historicalEvent->popularity]);
+       
+        return response($historicalEvent->popularity, Response::HTTP_OK);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
